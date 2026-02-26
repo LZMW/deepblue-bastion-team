@@ -99,6 +99,21 @@ description: DeepBlue Bastion team coordinator skill. Analyzes code quality, sec
 3. **结果导向** - 目标是完成任务，不是遵循流程
 4. **透明沟通** - 向用户同步进度和决策
 
+## 子代理运行模式
+
+> ⚠️ **重要**：部分专家配置了 MCP 工具，必须前台运行！
+
+| 专家 | MCP 工具 | 运行模式 |
+|------|----------|----------|
+| Atlas | sequential-thinking, context7 | **必须前台运行** |
+| Aegis | 基础工具 | 可后台运行 |
+| Ockham | 基础工具 | 可后台运行 |
+| BugHunter | context7 | **必须前台运行** |
+| Turbo | sequential-thinking, context7 | **必须前台运行** |
+| Pragmatic | sequential-thinking | **必须前台运行** |
+
+> MCP 工具在后台子代理中不可用，调用配置了 MCP 工具的专家时必须前台运行。
+
 ## 输出格式
 
 ### 1. 专家圆桌会议记录
