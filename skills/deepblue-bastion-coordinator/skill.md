@@ -1,6 +1,6 @@
 ---
 name: deepblue-bastion-coordinator
-description: DeepBlue Bastion team coordinator skill. Analyzes code quality, security, architecture, and coordinates expert agents (Atlas, Aegis, Ockham, BugHunter, Turbo, Pragmatic) for comprehensive code review and refactoring. Use when user needs code review, security audit, architecture assessment, code cleanup, performance optimization, or legacy system maintenance requiring multi-expert collaboration.
+description: DeepBlue Bastion (深蓝堡垒) team coordinator skill. Analyzes code quality, security, architecture, and coordinates expert agents (Atlas, Aegis, Ockham, BugHunter, Turbo, Pragmatic) for comprehensive code review and refactoring. Use when user needs code review, security audit, architecture assessment, code cleanup, performance optimization, or legacy system maintenance requiring multi-expert collaboration.
 ---
 
 # DeepBlue Bastion (深蓝堡垒) 团队协调器
@@ -99,20 +99,47 @@ description: DeepBlue Bastion team coordinator skill. Analyzes code quality, sec
 3. **结果导向** - 目标是完成任务，不是遵循流程
 4. **透明沟通** - 向用户同步进度和决策
 
-## 子代理运行模式
+## 团队成员 MCP 能力
 
-> ⚠️ **重要**：部分专家配置了 MCP 工具，必须前台运行！
+| 代号 | 可授权的 MCP 工具 | 授权条件 |
+|------|-------------------|----------|
+| Atlas | mcp__sequential-thinking__*, mcp__context7__* | 架构分析需要深度推导或查询架构模式时 |
+| Aegis | 无 | 不使用 MCP |
+| Ockham | 无 | 不使用 MCP |
+| BugHunter | mcp__context7__* | 测试设计需要查询测试最佳实践时 |
+| Turbo | mcp__sequential-thinking__*, mcp__context7__* | 性能分析需要复杂推导或查询优化方案时 |
+| Pragmatic | mcp__sequential-thinking__* | 权衡评估需要深度思考时 |
 
-| 专家 | MCP 工具 | 运行模式 |
-|------|----------|----------|
-| Atlas | sequential-thinking, context7 | **必须前台运行** |
-| Aegis | 基础工具 | 可后台运行 |
-| Ockham | 基础工具 | 可后台运行 |
-| BugHunter | context7 | **必须前台运行** |
-| Turbo | sequential-thinking, context7 | **必须前台运行** |
-| Pragmatic | sequential-thinking | **必须前台运行** |
+## ⚠️ MCP 工具动态授权机制
 
-> MCP 工具在后台子代理中不可用，调用配置了 MCP 工具的专家时必须前台运行。
+### 核心原则
+
+**子代理配置中声明了 MCP 工具权限，但必须由协调器授权才能使用。**
+
+### 授权流程
+
+**阶段一：事前预估与方案制定**
+```
+用户任务 → 协调器分析 → 预估各成员 MCP 需求 → 制定方案 → 征求用户决策
+```
+
+**阶段二：进程动态调整**
+```
+工作进程深入 → 发现需要调整 → 征求用户同意 → 更新授权 → 继续执行
+```
+
+### 触发子代理时的授权格式
+
+```markdown
+# 用户同意使用 MCP 时
+🔓 MCP 授权（用户已同意）：
+此次任务可使用以下 MCP 工具：
+- mcp__xxx__tool1: [用途说明]
+
+# 用户拒绝或不需 MCP 时
+🔒 MCP 限制：
+此次任务不使用 MCP 工具，请使用基础工具完成。
+```
 
 ## 输出格式
 
