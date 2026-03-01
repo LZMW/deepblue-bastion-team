@@ -43,18 +43,6 @@ Claude Code技能目录：
 ```bash
 # Windows
 xcopy /E /I "N:\编程备份\3.0团队\deepblue-bastion-team\skills\deepblue-bastion-coordinator" "C:\Users\[用户名]\.claude\skills\deepblue-bastion-coordinator\"
-
-# macOS/Linux
-cp -r "N:\编程备份\3.0团队\deepblue-bastion-team\skills\deepblue-bastion-coordinator" ~/.claude/skills/
-```
-
-4. **复制专家Agent配置**
-
-```bash
-# Windows
-xcopy /E /I "N:\编程备份\3.0团队\deepblue-bastion-team\agents" "C:\Users\[用户名]\.claude\agents\deepblue-bastion\"
-
-# macOS/Linux
 cp -r "N:\编程备份\3.0团队\deepblue-bastion-team\agents" ~/.claude/agents/deepblue-bastion/
 ```
 
